@@ -15,20 +15,12 @@ vim.g.have_nerd_font = false
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -183,22 +175,22 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-      }
-    end,
-  },
+  -- { -- Useful plugin to show you pending keybinds.
+  --   'folke/which-key.nvim',
+  --   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  --   config = function() -- This is the function that runs, AFTER loading
+  --     require('which-key').setup()
+  --
+  --     -- Document existing key chains
+  --     require('which-key').register {
+  --       ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+  --       ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+  --       ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+  --       ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+  --       ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+  --     }
+  --   end,
+  -- },
 
   -- NOTE: Plugins can specify dependencies.
   --
@@ -766,6 +758,34 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
+  -- ========== PLUGINS ADDED BY ME ==========
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+  },
+  {
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -788,7 +808,7 @@ require('lazy').setup({
   },
 })
 
--- New remaps added by me
+-- ========== NEW REMAPS ADDED BY ME ==========
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<Esc>', ':noh<return><esc>')
@@ -849,6 +869,9 @@ vim.opt.guicursor = {
 }
 
 vim.opt.colorcolumn = '100'
+
+-- ========== CUSTOM COMMANDS ==========
+vim.api.nvim_create_user_command('ReloadConfig', 'luafile $MYVIMRC', {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
