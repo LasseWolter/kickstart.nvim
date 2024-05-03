@@ -712,7 +712,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'c_sharp' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -868,7 +868,7 @@ vim.opt.guicursor = {
   'r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100',
 }
 
-vim.opt.colorcolumn = '100'
+vim.opt.colorcolumn = '120'
 
 -- ========== CUSTOM COMMANDS ==========
 vim.api.nvim_create_user_command('ReloadConfig', 'luafile $MYVIMRC', {})
