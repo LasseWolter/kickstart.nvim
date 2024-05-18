@@ -808,6 +808,9 @@ require('lazy').setup({
   },
 })
 
+-- ========== NEW VIM OPTIONS SET BY ME ==========
+vim.opt.expandtab = true
+
 -- ========== NEW REMAPS ADDED BY ME ==========
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
@@ -822,6 +825,7 @@ vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set('n', '<leader>l', '<c-^>')
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
