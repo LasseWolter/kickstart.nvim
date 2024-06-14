@@ -816,7 +816,8 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<Esc>', ':noh<return><esc>')
 -- increment number under cursor (use [m]ore instead of [a] because <C-a> is my tmux prefix)
-vim.keymap.set('n', '<C-m>', '<C-a>')
+vim.keymap.set({ 'n', 'v' }, '<C-m>', '<C-a>', { remap = true })
+vim.keymap.set('v', 'gm', 'g<C-a>') -- remap 'gm' because 'g<C-m>' doesn't work
 
 -- quickfix jumping
 vim.keymap.set('n', '<C-j>', ':cnext<CR>')
