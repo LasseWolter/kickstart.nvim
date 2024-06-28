@@ -879,6 +879,7 @@ vim.opt.colorcolumn = '120'
 
 -- ========== CUSTOM COMMANDS ==========
 vim.api.nvim_create_user_command('ReloadConfig', 'luafile $MYVIMRC', {})
+vim.api.nvim_create_user_command('AddNewlineAfterTags', '%s/> *</>\r</g', {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
