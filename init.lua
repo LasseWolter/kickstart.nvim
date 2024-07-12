@@ -881,9 +881,6 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', '<leader>l', '<c-^>')
 
--- next greatest remap ever : asbjornHaland
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>e', ':Explore<CR>')
 
@@ -906,6 +903,9 @@ vim.cmd [[vmap <C-_> gc]]
 vim.keymap.set('n', '<F3>', ':set invpaste<CR>', {})
 vim.keymap.set('i', '<F3>', '<C-o>:set invpaste<CR>', { remap = true })
 
+-- copy next yank into sys clipboard (credit to asbjornHaland)
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+vim.keymap.set('n', '<leader>Y', [["+Y]])
 -- Paste from sysClipboard
 vim.keymap.set('n', '<leader>p', '<F3>i<C-r>+<esc><F3>', { remap = true })
 -- Paste formatted with <C-v> in insert mode (using paste mode)
