@@ -15,6 +15,7 @@ vim.g.have_nerd_font = false
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.o.cpoptions = vim.o.cpoptions .. 'x' -- stay at serach item when <esc>
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
