@@ -814,6 +814,16 @@ require('lazy').setup({
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
   -- ========== PLUGINS ADDED BY ME ==========
+  -- MARKDOWN PREVIEW
+  -- -> install without yarn or npm - first time after installation you have to run `:Lazy build markdown-preview.nvim`
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
+  },
   {
     'christoomey/vim-tmux-navigator',
     cmd = {
@@ -864,6 +874,10 @@ require('lazy').setup({
 })
 
 -- ========== NEW REMAPS ADDED BY ME ==========
+-- Plugin Remaps
+vim.keymap.set('n', '<leader>om', ':MarkdownPreviewToggle<CR>', { silent = true })
+
+-- General Remaps
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<Esc>', ':noh<return><esc>')
