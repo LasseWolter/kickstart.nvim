@@ -908,7 +908,7 @@ vim.keymap.set('i', '<F3>', '<C-o>:set invpaste<CR>', { remap = true })
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]])
 -- Paste from sysClipboard
-vim.keymap.set('n', '<leader>p', '<F3>i<C-r>+<esc><F3>', { remap = true })
+vim.keymap.set('n', '<leader>p', '<F3>a<C-r>+<esc><F3>', { remap = true })
 -- Paste formatted with <C-v> in insert mode (using paste mode)
 vim.keymap.set('i', '<C-v>', '<C-o><F3><C-r>+<C-o><F3>', { remap = true })
 
