@@ -588,7 +588,7 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
@@ -897,7 +897,6 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', '<leader>l', '<c-^>')
 
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>e', ':Explore<CR>')
 
 -- replace all instances of text under cursor / text selected in visual mode
@@ -941,6 +940,44 @@ vim.opt.guicursor = {
   'i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100',
   'r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100',
 }
+
+-- ========== Custom Lua stuff==========
+-- create function to open todo.md by recursing up the file tree
+local function file_exists(name)
+  local f = io.open(name, 'r')
+  return f ~= nil and io.close(f)
+end
+
+local function get_parent_dir(path)
+  local raw_path = path
+  vim.cmd('cd ' .. raw_path .. '/../')
+  local result = vim.fn.getcwd() -- normalized.
+  vim.cmd 'cd -' -- restore.
+  return result
+end
+
+local function find_todo_md()
+  local current_dir = vim.fn.getcwd()
+  local home_dir = os.getenv 'HOME'
+  print(home_dir)
+
+  while current_dir ~= home_dir do
+    local path = current_dir .. '/todo.md'
+
+    if file_exists(path) then
+      vim.api.nvim_command(':tabnew' .. path)
+      return
+    end
+
+    current_dir = get_parent_dir(current_dir)
+  end
+
+  print 'No todo.md file found.'
+end
+
+vim.api.nvim_create_user_command('TodoFind', find_todo_md, {})
+
+vim.keymap.set('n', '<leader>gt', ':TodoFind<cr>')
 
 vim.opt.colorcolumn = '120'
 
