@@ -887,8 +887,8 @@ vim.keymap.set({ 'n', 'v' }, '<C-m>', '<C-a>', { remap = true })
 vim.keymap.set('v', 'gm', 'g<C-a>') -- remap 'gm' because 'g<C-m>' doesn't work
 
 -- quickfix jumping
-vim.keymap.set('n', '<C-j>', ':cnext<CR>')
-vim.keymap.set('n', '<C-k>', ':cprevious<CR>')
+vim.keymap.set('n', '<leader>j', ':cnext<CR>')
+vim.keymap.set('n', '<leader>k', ':cprevious<CR>')
 
 vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set('n', '<c-d>', '<c-d>zz')
