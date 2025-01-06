@@ -925,6 +925,7 @@ vim.keymap.set('n', '<leader>e', ':Explore<CR>')
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set('v', '<leader>s', [["hy:%s/<C-r>h/<C-r>h/g<left><left>]])
 
+vim.keymap.set('n', '*', '*N') -- stay on same occurence when highlighting word
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', 'tn', ':tabnew')
 
