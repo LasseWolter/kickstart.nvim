@@ -911,7 +911,6 @@ vim.keymap.set('n', '<leader>e', ':Explore<CR>')
 -- replace all instances text selected in visual mode
 vim.keymap.set('v', '<leader>s', [["hy:%s/<C-r>h/<C-r>h/g<left><left>]])
 
-vim.keymap.set('n', '*', '*N') -- stay on same occurence when highlighting word
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', 'tn', ':tabnew')
 
