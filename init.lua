@@ -440,7 +440,10 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>o', require('telescope.builtin').lsp_document_symbols, '[O]utline (search document symbols')
+          local builtin = require 'telescope.builtin'
+          map('<leader>o', function()
+            builtin.lsp_document_symbols { ignore_symbols = { 'property', 'constant' } }
+          end, '[O]utline (search document symbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
@@ -830,23 +833,6 @@ require('lazy').setup({
     build = function()
       vim.fn['mkdp#util#install']()
     end,
-  },
-  {
-    'christoomey/vim-tmux-navigator',
-    cmd = {
-      'TmuxNavigateLeft',
-      'TmuxNavigateDown',
-      'TmuxNavigateUp',
-      'TmuxNavigateRight',
-      'TmuxNavigatePrevious',
-    },
-    keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
-      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
-    },
   },
   {
     'kylechui/nvim-surround',
