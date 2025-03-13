@@ -922,6 +922,9 @@ vim.keymap.set('n', '<leader>l', '<c-^>')
 
 vim.keymap.set('n', '<leader>e', ':Explore<CR>')
 
+vim.keymap.set('n', 'yaf', 'va{o{jy')
+vim.keymap.set('n', 'vaf', 'va{o{j')
+
 -- replace all instances text selected in visual mode
 vim.keymap.set('v', '<leader>s', [["hy:%s/<C-r>h/<C-r>h/g<left><left>]])
 
