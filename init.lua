@@ -941,6 +941,10 @@ vim.keymap.set('i', '<C-v>', '<C-o><F3><C-r>+<C-o><F3>', { remap = true })
 vim.keymap.set('v', '<C-c>', '"+y')
 vim.keymap.set('n', '<C-c>', '"+y')
 
+-- Change indentation with single key
+vim.keymap.set('n', '<', '<<')
+vim.keymap.set('n', '>', '>>')
+
 -- ========== SYNTAX HIGHLIGHT ==========
 -- Define the parenthesis highlight attributes
 vim.cmd [[highlight MatchParen gui=underline guibg=transparent guifg=orange]]
