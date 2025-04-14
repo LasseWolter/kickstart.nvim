@@ -505,7 +505,13 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              pythonPath = '.venv/bin/python',
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -942,6 +948,10 @@ vim.keymap.set('i', '<C-v>', '<C-o><F3><C-r>+<C-o><F3>', { remap = true })
 -- Copy with <C-c> in normal and visual mode
 vim.keymap.set('v', '<C-c>', '"+y')
 vim.keymap.set('n', '<C-c>', '"+y')
+
+-- Increase/Decrease number under cursor
+vim.keymap.set('n', '<C-.>', '<C-m>', { remap = true })
+vim.keymap.set('n', '<C-,>', '<C-x>', { remap = true })
 
 -- Change indentation with single key
 vim.keymap.set('n', '<', '<<')
