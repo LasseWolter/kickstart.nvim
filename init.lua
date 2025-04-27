@@ -895,6 +895,10 @@ require('lazy').setup({
 -- Plugin Remaps
 vim.keymap.set('n', '<leader>om', ':MarkdownPreviewToggle<CR>', { silent = true })
 
+-- Tab movement with vim binds 
+vim.keymap.set('n', 'gh', 'gT')
+vim.keymap.set('n', 'gl', 'gt')
+
 -- General Remaps
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
