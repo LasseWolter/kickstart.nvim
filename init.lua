@@ -508,7 +508,7 @@ require('lazy').setup({
         pyright = {
           settings = {
             python = {
-              pythonPath = '.venv/bin/python',
+              pythonPath = { '.venv/bin/python', 'venv/bin/python' }
             },
           },
         },
@@ -852,6 +852,7 @@ require('lazy').setup({
       }
     end,
   },
+-- NOTE: Uncommented for now due to annoying error message I don't want to deal with
 --  {
 --    'windwp/nvim-ts-autotag',
 --    opts = {
