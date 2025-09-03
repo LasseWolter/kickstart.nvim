@@ -304,10 +304,15 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
+        defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.95,
+            preview_height = 0.65,
+          },
+          -- mappings = {
+          --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+        },
         -- },
         -- pickers = {}
         extensions = {
@@ -509,7 +514,7 @@ require('lazy').setup({
         pyright = {
           settings = {
             python = {
-              pythonPath = { '.venv/bin/python', 'venv/bin/python' }
+              pythonPath = { '.venv/bin/python', 'venv/bin/python' },
             },
           },
         },
@@ -853,24 +858,24 @@ require('lazy').setup({
       }
     end,
   },
--- NOTE: Uncommented for now due to annoying error message I don't want to deal with
---  {
---    'windwp/nvim-ts-autotag',
---    opts = {
---      -- Defaults
---      enable_close = true, -- Auto close tags
---      enable_rename = true, -- Auto rename pairs of tags
---      enable_close_on_slash = false, -- Auto close on trailing </
---    },
---    -- Also override individual filetype configs, these take priority.
---    -- Empty by default, useful if one of the "opts" global settings
---    -- doesn't work well in a specific filetype
---    -- per_filetype = {
---    --   ['html'] = {
---    --     enable_close = false,
---    --   },
---    -- },
---  },
+  -- NOTE: Uncommented for now due to annoying error message I don't want to deal with
+  --  {
+  --    'windwp/nvim-ts-autotag',
+  --    opts = {
+  --      -- Defaults
+  --      enable_close = true, -- Auto close tags
+  --      enable_rename = true, -- Auto rename pairs of tags
+  --      enable_close_on_slash = false, -- Auto close on trailing </
+  --    },
+  --    -- Also override individual filetype configs, these take priority.
+  --    -- Empty by default, useful if one of the "opts" global settings
+  --    -- doesn't work well in a specific filetype
+  --    -- per_filetype = {
+  --    --   ['html'] = {
+  --    --     enable_close = false,
+  --    --   },
+  --    -- },
+  --  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -897,7 +902,7 @@ require('lazy').setup({
 -- Plugin Remaps
 vim.keymap.set('n', '<leader>om', ':MarkdownPreviewToggle<CR>', { silent = true })
 
--- Tab movement with vim binds 
+-- Tab movement with vim binds
 vim.keymap.set('n', 'gh', 'gT')
 vim.keymap.set('n', 'gl', 'gt')
 
