@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- browser to use by nvim
-vim.g.netrw_browsex_viewer = "zen"
+vim.g.netrw_browsex_viewer = 'zen'
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
@@ -87,15 +87,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -133,9 +124,9 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
-  "szw/vim-maximizer",
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'szw/vim-maximizer',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -319,6 +310,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>gb', builtin.git_branches)
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -943,21 +935,32 @@ vim.keymap.set('n', '>', '>>')
 vim.keymap.set('v', '>', '> gv')
 vim.keymap.set('v', '<', '< gv')
 
-
 -- ========== NAVIGATION MAPS ==========
 vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true })
+
+-- Keybinds to make split navigation easier.
+--  Use CTRL/<leader>+<hjkl> to switch between windows
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<leader>wh>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<leader>wl', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<leader>wk', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- ========== GIT MAPS ==========
 vim.keymap.set('n', '<leader>gg', ':Git<CR>', { silent = true })
 
 -- git browse keymaps
 -- git browse keymaps
-vim.keymap.set("n", "<leader>go", ":GBrowse<CR>", { silent = true })
-vim.keymap.set("v", "<leader>go", ":GBrowse<CR>", { silent = true })
+vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { silent = true })
+vim.keymap.set('v', '<leader>go', ':GBrowse<CR>', { silent = true })
 
 -- copy permalink to current line/selected lines
-vim.keymap.set("n", "<leader>gl", ":GBrowse!<CR>", { silent = true })
-vim.keymap.set("v", "<leader>gl", ":GBrowse!<CR>", { silent = true })
+vim.keymap.set('n', '<leader>gl', ':GBrowse!<CR>', { silent = true })
+vim.keymap.set('v', '<leader>gl', ':GBrowse!<CR>', { silent = true })
 
 -- ========== SYNTAX HIGHLIGHT ==========
 -- Define the parenthesis highlight attributes
