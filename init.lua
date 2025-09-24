@@ -4,8 +4,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- browser to use by nvim
+vim.g.netrw_browsex_viewer = "zen"
+
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -130,6 +133,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  "tpope/vim-fugitive",
+  "tpope/vim-rhubarb",
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
