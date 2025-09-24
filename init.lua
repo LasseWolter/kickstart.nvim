@@ -220,38 +220,6 @@ require('lazy').setup({
     },
   },
 
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-  --
-  -- This is often very useful to both group configuration, as well as handle
-  -- lazy loading plugins that don't need to be loaded immediately at startup.
-  --
-  -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
-  --
-  -- which loads which-key before all the UI elements are loaded. Events can be
-  -- normal autocommands events (`:help autocmd-events`).
-  --
-  -- Then, because we use the `config` key, the configuration only runs
-  -- after the plugin has been loaded:
-  --  config = function() ... end
-
-  -- { -- Useful plugin to show you pending keybinds.
-  --   'folke/which-key.nvim',
-  --   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-  --   config = function() -- This is the function that runs, AFTER loading
-  --     require('which-key').setup()
-  --
-  --     -- Document existing key chains
-  --     require('which-key').register {
-  --       ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  --       ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  --       ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  --       ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  --       ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-  --     }
-  --   end,
-  -- },
-
   -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
@@ -943,9 +911,6 @@ vim.keymap.set('v', '<leader>s', [["hy:%s/<C-r>h/<C-r>h/g<left><left>]])
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', 'tn', ':tabnew')
 
--- Git maps
-vim.keymap.set('n', '<leader>gg', ':Git<CR>')
-
 -- use VScode toggle comment bindings
 vim.cmd [[nmap <C-_> gcc]]
 vim.cmd [[vmap <C-_> gc]]
@@ -976,6 +941,18 @@ vim.keymap.set('n', '<', '<<')
 vim.keymap.set('n', '>', '>>')
 vim.keymap.set('v', '>', '> gv')
 vim.keymap.set('v', '<', '< gv')
+
+-- Git maps
+vim.keymap.set('n', '<leader>gg', ':Git<CR>')
+
+-- git browse keymaps
+-- git browse keymaps
+vim.keymap.set("n", "<leader>go", ":GBrowse<CR>", { silent = true })
+vim.keymap.set("v", "<leader>go", ":GBrowse<CR>", { silent = true })
+
+-- copy permalink to current line/selected lines
+vim.keymap.set("n", "<leader>gl", ":GBrowse!<CR>", { silent = true })
+vim.keymap.set("v", "<leader>gl", ":GBrowse!<CR>", { silent = true })
 
 -- ========== SYNTAX HIGHLIGHT ==========
 -- Define the parenthesis highlight attributes
