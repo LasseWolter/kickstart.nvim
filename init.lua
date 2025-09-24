@@ -135,6 +135,7 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
+  "szw/vim-maximizer",
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -942,8 +943,12 @@ vim.keymap.set('n', '>', '>>')
 vim.keymap.set('v', '>', '> gv')
 vim.keymap.set('v', '<', '< gv')
 
--- Git maps
-vim.keymap.set('n', '<leader>gg', ':Git<CR>')
+
+-- ========== NAVIGATION MAPS ==========
+vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true })
+
+-- ========== GIT MAPS ==========
+vim.keymap.set('n', '<leader>gg', ':Git<CR>', { silent = true })
 
 -- git browse keymaps
 -- git browse keymaps
