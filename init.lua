@@ -953,13 +953,12 @@ vim.keymap.set('n', '<leader>wk', '<C-w><C-k>', { desc = 'Move focus to the uppe
 vim.keymap.set('n', '<leader>gg', ':Git<CR>', { silent = true })
 
 -- git browse keymaps
--- git browse keymaps
-vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { silent = true })
-vim.keymap.set('v', '<leader>go', ':GBrowse<CR>', { silent = true })
+vim.keymap.set('n', '<leader>ao', ':GBrowse<CR>', { silent = true })
+vim.keymap.set('v', '<leader>ao', ':GBrowse<CR>', { silent = true })
 
 -- copy permalink to current line/selected lines
-vim.keymap.set('n', '<leader>gl', ':GBrowse!<CR>', { silent = true })
-vim.keymap.set('v', '<leader>gl', ':GBrowse!<CR>', { silent = true })
+vim.keymap.set('n', '<leader>al', ':GBrowse!<CR>', { silent = true })
+vim.keymap.set('v', '<leader>al', ':GBrowse!<CR>', { silent = true })
 
 -- ========== SYNTAX HIGHLIGHT ==========
 -- Define the parenthesis highlight attributes
