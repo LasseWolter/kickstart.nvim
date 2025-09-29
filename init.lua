@@ -136,7 +136,7 @@ local function custom_lsp_entry_maker()
   local entry_display = require 'telescope.pickers.entry_display'
   local make_entry = require 'telescope.make_entry'
   local displayer = entry_display.create {
-    separator = ' ',
+    separator = ' | ',
     items = {
       { width = 50 }, -- path+filename column
       { remaining = true },
