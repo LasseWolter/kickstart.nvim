@@ -110,6 +110,59 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+-- [[ TELESCOPE CUSTOM PICKER ]]
+-- shorten path to last N segments, add ellipsis if cut
+local function shorten_path(path, keep)
+  local parts = {}
+  for seg in string.gmatch(path, '[^/]+') do
+    table.insert(parts, seg)
+  end
+  local n = #parts
+  if n > keep then
+    local start_idx = math.max(n - keep + 1, 1)
+    local result = '…'
+    for i = start_idx, n do
+      result = result .. '/' .. parts[i]
+    end
+    return result
+  else
+    return path
+  end
+end
+
+-- factory for custom entry makers that increases size of the file path column
+local function custom_lsp_entry_maker()
+  local telescope = require 'telescope'
+  local entry_display = require 'telescope.pickers.entry_display'
+  local make_entry = require 'telescope.make_entry'
+  local displayer = entry_display.create {
+    separator = ' ',
+    items = {
+      { width = 50 }, -- path+filename column
+      { remaining = true },
+    },
+  }
+
+  local make_display = function(entry)
+    return displayer {
+      shorten_path(entry.filename, 3) .. ':' .. entry.lnum,
+      entry.text,
+    }
+  end
+
+  return function(entry)
+    return make_entry.set_default_entry_mt {
+      value = entry,
+      ordinal = entry.filename .. ' ' .. entry.text,
+      display = make_display,
+      filename = entry.filename,
+      lnum = entry.lnum,
+      col = entry.col,
+      text = entry.text,
+    }
+  end
+end
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -275,13 +328,17 @@ require('lazy').setup({
             vertical = {
               height = 0.95,
               preview_height = 0.65,
-            }
-          },
+            },
+          }
           -- mappings = {
           --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         },
-        -- },
-        -- pickers = {}
+        pickers = {
+          lsp_references = { entry_maker = custom_lsp_entry_maker() },
+          lsp_definitions = { entry_maker = custom_lsp_entry_maker() },
+          lsp_implementations = { entry_maker = custom_lsp_entry_maker() },
+          lsp_type_definitions = { entry_maker = custom_lsp_entry_maker() },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -324,7 +381,7 @@ require('lazy').setup({
         builtin.grep_string {
           only_sort_text = true,
           path_display = { 'smart' },
-          word_match = "-w",
+          word_match = '-w',
           search = '',
         }
       end, { desc = '[S]earch by [G]rep' })
