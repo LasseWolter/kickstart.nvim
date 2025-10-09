@@ -378,7 +378,7 @@ require('lazy').setup({
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>sz', function()
+      vim.keymap.set('n', '<leader>s/', function()
         builtin.grep_string {
           only_sort_text = true,
           path_display = { 'smart' },
