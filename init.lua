@@ -138,7 +138,7 @@ local function custom_lsp_entry_maker()
   local displayer = entry_display.create {
     separator = ' | ',
     items = {
-      { width = 50 }, -- path+filename column
+      { width = 80 }, -- path+filename column
       { remaining = true },
     },
   }
