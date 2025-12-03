@@ -29,6 +29,9 @@ vim.opt.showmode = false
 -- Enable break indent
 vim.opt.breakindent = true
 
+--Don't change EOL at the end of the file
+vim.opt.fixeol = false
+
 -- Save undo history
 vim.opt.undofile = true
 
