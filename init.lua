@@ -11,8 +11,8 @@ vim.g.netrw_browsex_viewer = 'zen'
 vim.g.have_nerd_font = true
 
 -- code folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevel = 99
 vim.opt.foldnestmax = 4
 -- Toggle current fold (zm is easier to hit and close to c-m which was my IDE mapping)
@@ -191,6 +191,12 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'szw/vim-maximizer',
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -340,7 +346,7 @@ require('lazy').setup({
               height = 0.95,
               preview_height = 0.65,
             },
-          }
+          },
           -- mappings = {
           --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         },
@@ -564,6 +570,8 @@ require('lazy').setup({
         -- tsserver = {},
         --
 
+        ts_ls = {},
+        csharp_ls = {}, -- requires .NET 9 or higher
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -592,7 +600,10 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'stylua',
+        'prettierd',
+        'yamlfix',
+        'markdownlint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1079,6 +1090,17 @@ vim.api.nvim_create_user_command('TodoFind', find_todo_md, {})
 vim.keymap.set('n', '<leader>gt', ':TodoFind<cr>')
 
 vim.opt.colorcolumn = '120'
+
+-- harppon
+local harpoon = require("harpoon")
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>hm", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<M-2>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<M-3>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<M-4>", function() harpoon:list():select(3) end)
 
 -- ========== CUSTOM COMMANDS ==========
 vim.api.nvim_create_user_command('ReloadConfig', 'luafile $MYVIMRC', {})
