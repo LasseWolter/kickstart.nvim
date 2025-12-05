@@ -10,6 +10,14 @@ vim.g.netrw_browsex_viewer = 'zen'
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
 
+-- code folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldnestmax = 4
+-- Toggle current fold (zm is easier to hit and close to c-m which was my IDE mapping)
+vim.keymap.set('n', 'zm', 'za')
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
