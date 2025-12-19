@@ -4,6 +4,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Treat _ as a word separator so you can easily jump inside snake case variables
+vim.opt.iskeyword:remove("_")
+
 -- browser to use by nvim
 vim.g.netrw_browsex_viewer = 'zen'
 
