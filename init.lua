@@ -30,6 +30,7 @@ vim.keymap.set('n', 'zm', 'za')
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.o.cpoptions = vim.o.cpoptions .. 'x' -- stay at serach item when <esc>
+vim.keymap.set('n', '<C-k>l', ':set rnu!<cr>')
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
