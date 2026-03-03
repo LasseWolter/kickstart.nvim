@@ -905,6 +905,23 @@ require('lazy').setup({
       }
     end,
   },
+  {
+    'mg979/vim-visual-multi',
+    branch = 'master',
+    init = function()
+      vim.g.VM_maps = {
+        ['Add Cursor Down'] = '<M-j>',
+        ['Add Cursor Up'] = '<M-k>',
+        ['Find Under'] = '<M-n>',
+        ['Find Subword Under'] = '<M-n>',
+        ['Find Next'] = '<M-n>',
+        ['Find Prev'] = '<M-p>',
+        ['Select All'] = '<M-u>',
+        ['Skip Region'] = '<M-x>',
+        ['Remove Region'] = '<M-X>',
+      }
+    end,
+  },
   -- NOTE: Uncommented for now due to annoying error message I don't want to deal with
   --  {
   --    'windwp/nvim-ts-autotag',
