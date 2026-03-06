@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Treat _ as a word separator so you can easily jump inside snake case variables
-vim.opt.iskeyword:remove("_")
+vim.opt.iskeyword:remove '_'
 
 -- browser to use by nvim
 vim.g.netrw_browsex_viewer = 'zen'
@@ -200,7 +200,6 @@ require('lazy').setup({
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
-
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -892,6 +891,8 @@ require('lazy').setup({
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
     build = function()
+      -- This loads the plugin so that 'mkdp#util#install' exists
+      require('lazy').load { plugins = { 'markdown-preview.nvim' } }
       vim.fn['mkdp#util#install']()
     end,
   },
@@ -1109,15 +1110,25 @@ vim.keymap.set('n', '<leader>gt', ':TodoFind<cr>')
 vim.opt.colorcolumn = '120'
 
 -- harppon
-local harpoon = require("harpoon")
+local harpoon = require 'harpoon'
 harpoon:setup()
 
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
-vim.keymap.set("n", "<leader>hm", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set('n', '<leader>ha', function()
+  harpoon:list():add()
+end)
+vim.keymap.set('n', '<leader>hm', function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
 
-vim.keymap.set("n", "<M-2>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<M-3>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<M-4>", function() harpoon:list():select(3) end)
+vim.keymap.set('n', '<M-2>', function()
+  harpoon:list():select(1)
+end)
+vim.keymap.set('n', '<M-3>', function()
+  harpoon:list():select(2)
+end)
+vim.keymap.set('n', '<M-4>', function()
+  harpoon:list():select(3)
+end)
 
 -- ========== CUSTOM COMMANDS ==========
 vim.api.nvim_create_user_command('ReloadConfig', 'luafile $MYVIMRC', {})
