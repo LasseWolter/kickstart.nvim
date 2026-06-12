@@ -1130,6 +1130,10 @@ vim.keymap.set('n', '<M-4>', function()
   harpoon:list():select(3)
 end)
 
+-- Replace word under cursor/selected word in whole file
+vim.keymap.set('n', '<leader>rp', ':%s/<C-r><C-w>//g<Left><Left>')
+vim.keymap.set('x', '<leader>rp', 'y:%s/<C-r>"//g<Left><Left>')
+
 -- ========== CUSTOM COMMANDS ==========
 vim.api.nvim_create_user_command('ReloadConfig', 'luafile $MYVIMRC', {})
 vim.api.nvim_create_user_command('AddNewlineAfterTags', '%s/> *</>\r</g', {})
