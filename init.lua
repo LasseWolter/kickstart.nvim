@@ -652,6 +652,7 @@ require('lazy').setup({
       -- end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        sql = { 'sql_formatter' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -661,6 +662,11 @@ require('lazy').setup({
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         jsx = { 'prettierd', 'prettier', stop_after_first = true },
         tsx = { 'prettierd', 'prettier', stop_after_first = true },
+      },
+      formatters = {
+        sql_formatter = {
+          prepend_args = { '-l', 'transactsql' }, -- use ms-sql dialect
+        },
       },
     },
   },
