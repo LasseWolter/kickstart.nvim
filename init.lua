@@ -1000,8 +1000,32 @@ vim.keymap.set('n', '<leader>l', '<c-^>')
 
 vim.g.NERDTreeQuitOnOpen = 1
 vim.g.NERDTreeShowHidden = 1
+vim.g.NERDTreeMinimalUI = 1
 
 vim.keymap.set('n', '<leader>e', ':NERDTreeToggle<CR>')
+
+-- <Left> collapses the folder under the cursor, or the folder containing the file under the cursor
+vim.cmd([[
+  function! NERDTreeArrowLeft()
+    let l:node = g:NERDTreeFileNode.GetSelected()
+    if empty(l:node)
+      return
+    endif
+    if l:node.path.isDirectory
+      call feedkeys('o', 'i')
+    else
+      call feedkeys('x', 'i')
+    endif
+  endfunction
+]])
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'nerdtree',
+  callback = function()
+    vim.keymap.set('n', '<Right>', 'o', { buffer = true, remap = true })
+    vim.keymap.set('n', '<Left>', ':call NERDTreeArrowLeft()<CR>', { buffer = true, silent = true })
+  end,
+})
 
 vim.keymap.set('n', 'yaf', 'va{o{jy')
 vim.keymap.set('n', 'vaf', 'va{o{j')
