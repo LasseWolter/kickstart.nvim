@@ -191,6 +191,7 @@ end
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  'preservim/nerdtree',
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -997,7 +998,10 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', '<leader>l', '<c-^>')
 
-vim.keymap.set('n', '<leader>e', ':Explore<CR>')
+vim.g.NERDTreeQuitOnOpen = 1
+vim.g.NERDTreeShowHidden = 1
+
+vim.keymap.set('n', '<leader>e', ':NERDTreeToggle<CR>')
 
 vim.keymap.set('n', 'yaf', 'va{o{jy')
 vim.keymap.set('n', 'vaf', 'va{o{j')
