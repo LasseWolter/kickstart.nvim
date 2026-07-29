@@ -1002,7 +1002,24 @@ vim.g.NERDTreeQuitOnOpen = 1
 vim.g.NERDTreeShowHidden = 1
 vim.g.NERDTreeMinimalUI = 1
 
-vim.keymap.set('n', '<leader>e', ':NERDTreeToggle<CR>')
+-- Closes NERDTree if it's open; otherwise opens/reveals it at the current
+-- file's location, falling back to a plain toggle if the buffer isn't backed
+-- by a file (NERDTreeFind errors otherwise).
+vim.keymap.set('n', '<leader>e', function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].filetype == 'nerdtree' then
+      vim.cmd 'NERDTreeClose'
+      return
+    end
+  end
+
+  if vim.fn.expand '%' == '' then
+    vim.cmd 'NERDTreeToggle'
+  else
+    vim.cmd 'NERDTreeFind'
+  end
+end, { desc = 'Reveal current file in NERDTree' })
 
 -- <Left> collapses the folder under the cursor, or the folder containing the file under the cursor
 vim.cmd([[
