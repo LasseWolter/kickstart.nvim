@@ -605,7 +605,6 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua',
         'prettierd',
-        'yamlfix',
         'markdownlint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -664,6 +663,7 @@ require('lazy').setup({
         jsx = { 'prettierd', 'prettier', stop_after_first = true },
         tsx = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
       },
       formatters = {
         sql_formatter = {
