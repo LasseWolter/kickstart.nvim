@@ -32,6 +32,9 @@ vim.opt.relativenumber = true
 vim.o.cpoptions = vim.o.cpoptions .. 'x' -- stay at serach item when <esc>
 vim.keymap.set('n', '<C-k>l', ':set rnu!<cr>')
 
+-- Default tabwidth 4
+vim.opt.tabstop = 4
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
@@ -574,7 +577,7 @@ require('lazy').setup({
         --
 
         ts_ls = {},
-        csharp_ls = {}, -- requires .NET 9 or higher
+        -- csharp_ls = {}, -- requires .NET 9 or higher
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
